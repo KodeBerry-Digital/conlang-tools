@@ -54,6 +54,8 @@ export default function Home() {
     { word: 'word2' },
     { word: 'word2' }
   ])
+  const [ editingConlang, setEditingConlang ] = useState(false)
+  const [ csvData, setCsvData ] = useState('')
 
   function handleLogout() {
     // top 5 code moments of all time i think
@@ -76,6 +78,14 @@ export default function Home() {
     if (!conlangId) return // ok then si
   }
 
+  function handleCSVUpload(e: React.ChangeEvent) {
+    if (!e) return
+  }
+
+  function saveConlang(conlang: Conlang) { // also uploads it
+    if (!conlang) return
+  }
+
   return (
     <div className="min-h-screen bg-linear-to-br from-indigo-50 via-purple-50 to-pink-50">
       <ConfirmDeleteModal showConfirmDeleteModal={showConfirmDeleteModal} setShowConfirmDeleteModal={setShowConfirmDeleteModal} deleteConlang={deleteConlang} />
@@ -87,7 +97,7 @@ export default function Home() {
         </div>
 
         {view == 'home' && <HomePage resetConlangForm={resetConlangForm} setView={setView} user={user} myConlangs={myConlangs} setSelectedConlang={setSelectedConlang} editConlang={editConlang} startDeleteConlang={startDeleteConlang} publicConlangs={publicConlangs} />}
-        {view == 'create' && <CreatePage />}
+        {view == 'create' && <CreatePage setView={setView} user={user} editingConlang={editingConlang} handleCSVUpload={handleCSVUpload} csvData={csvData} saveConlang={saveConlang} />}
         {view == 'translate' && <TranslatePage />}
         {view == 'dictionary' && selectedConlang && <DictionaryPage resetConlangForm={resetConlangForm} setView={setView} setSelectedConlang={setSelectedConlang} setSearchTerm={setSearchTerm} selectedConlang={selectedConlang} searchTerm={searchTerm} filteredDictionary={filteredDictionary}/>}
       </div>
