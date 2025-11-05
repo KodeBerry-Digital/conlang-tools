@@ -20,10 +20,6 @@ export default function HomePage({ resetConlangForm, setView, user, myConlangs, 
 
   return (
     <div className='space-y-6'>
-      <div className='bg-white rounded-xl shadow-inner p-3 text-center text-sm text-gray-600'>
-        <span className='font-semibold text-indigo-700'>Your User ID:</span> {user.id}
-      </div>
-
       <div className='bg-white rounded-2xl shadow-xl p-8'>
         <div className='flex items-center justify-between mb-6'>
           <h2 className='text-2xl font-bold text-gray-800'>My Conlangs</h2>

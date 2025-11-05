@@ -12,7 +12,7 @@ import DictionaryPage from '@/dictionary/page'
 
 export default function Home() {
   const [ authError, setAuthError ] = useState('')
-  const [ view, setView ] = useState('')
+  const [ view, setView ] = useState('home')
   const [ showConfirmDeleteModal, setShowConfirmDeleteModal ] = useState(false)
   const [ searchTerm, setSearchTerm ] = useState('')
   const [ editingConlang, setEditingConlang ] = useState(false)
@@ -41,7 +41,7 @@ export default function Home() {
   const [ selectedConlang, setSelectedConlang ] = useState<Conlang | null>(myConlangs[0]) // temp but whatever
   const [ publicConlangs, setPublicConlangs ] = useState<Conlang[]>([
     {
-      id: 1,
+      id: 2,
       name: 'test',
       description: 'description',
       dictionary: [
@@ -98,10 +98,6 @@ export default function Home() {
       <Header user={user} authError={authError} view={view} setView={setView} handleLogout={handleLogout} />
 
       <div className='max-w-7xl mx-auto p-6'>
-        <div className='p-4 mb-4 bg-red-100 text-red-700 rounded-xl font-semibold border-l-4 border-red-500'>
-          ⚠️ **Configuration Warning:** The application is using a placeholder configuration. Data persistence may not work correctly. ok
-        </div>
-
         {view == 'home' && <HomePage resetConlangForm={resetConlangForm} setView={setView} user={user} myConlangs={myConlangs} setSelectedConlang={setSelectedConlang} editConlang={editConlang} startDeleteConlang={startDeleteConlang} publicConlangs={publicConlangs} />}
         {view == 'create' && <CreatePage setView={setView} user={user} editingConlang={editingConlang} handleCSVUpload={handleCSVUpload} csvData={csvData} saveConlang={saveConlang} />}
         {view == 'translate' && <TranslatePage myConlangs={myConlangs} publicConlangs={publicConlangs} isTranslating={isTranslating} translateApiCall={handleTranslate} />}

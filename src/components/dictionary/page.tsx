@@ -59,9 +59,10 @@ export default function DictionaryPage({ setSelectedConlang, setSearchTerm, setV
           <tbody>
             {filteredDictionary.map((entry, idx) => (
               <tr key={idx} className='border-b border-gray-200 hover:bg-indigo-50 transition'>
-                {selectedConlang.dictionary.length > 0 && Object.keys(selectedConlang.dictionary[0]).map((header, vidx) => (
+                {selectedConlang.dictionary.length > 0 && Object.keys(selectedConlang.dictionary[idx]).map((header, vidx) => (
                   <td key={vidx} className='px-4 py-3 text-sm text-gray-700'>
                     {header == 'word' ? entry.word : ''}
+                    {/* wth happened here */}
                   </td>
                 ))}
               </tr>
