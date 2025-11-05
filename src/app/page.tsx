@@ -56,6 +56,7 @@ export default function Home() {
   ])
   const [ editingConlang, setEditingConlang ] = useState(false)
   const [ csvData, setCsvData ] = useState('')
+  const [ isTranslating, setIsTranslating ] = useState(false)
 
   function handleLogout() {
     // top 5 code moments of all time i think
@@ -86,6 +87,11 @@ export default function Home() {
     if (!conlang) return
   }
 
+  async function handleTranslate(input: string, sourceLang: number, targetLang: number) {
+    if (!input || !sourceLang || !targetLang) return ''
+    return '' // lmao
+  }
+
   return (
     <div className="min-h-screen bg-linear-to-br from-indigo-50 via-purple-50 to-pink-50">
       <ConfirmDeleteModal showConfirmDeleteModal={showConfirmDeleteModal} setShowConfirmDeleteModal={setShowConfirmDeleteModal} deleteConlang={deleteConlang} />
@@ -98,7 +104,7 @@ export default function Home() {
 
         {view == 'home' && <HomePage resetConlangForm={resetConlangForm} setView={setView} user={user} myConlangs={myConlangs} setSelectedConlang={setSelectedConlang} editConlang={editConlang} startDeleteConlang={startDeleteConlang} publicConlangs={publicConlangs} />}
         {view == 'create' && <CreatePage setView={setView} user={user} editingConlang={editingConlang} handleCSVUpload={handleCSVUpload} csvData={csvData} saveConlang={saveConlang} />}
-        {view == 'translate' && <TranslatePage />}
+        {view == 'translate' && <TranslatePage myConlangs={myConlangs} publicConlangs={publicConlangs} isTranslating={isTranslating} translateApiCall={handleTranslate} />}
         {view == 'dictionary' && selectedConlang && <DictionaryPage resetConlangForm={resetConlangForm} setView={setView} setSelectedConlang={setSelectedConlang} setSearchTerm={setSearchTerm} selectedConlang={selectedConlang} searchTerm={searchTerm} filteredDictionary={filteredDictionary}/>}
       </div>
     </div>
