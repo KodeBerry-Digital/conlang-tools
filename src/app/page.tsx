@@ -11,15 +11,19 @@ import TranslatePage from '@/translate/page'
 import DictionaryPage from '@/dictionary/page'
 
 export default function Home() {
+  const [ authError, setAuthError ] = useState('')
+  const [ view, setView ] = useState('')
+  const [ showConfirmDeleteModal, setShowConfirmDeleteModal ] = useState(false)
+  const [ searchTerm, setSearchTerm ] = useState('')
+  const [ editingConlang, setEditingConlang ] = useState(false)
+  const [ csvData, setCsvData ] = useState('')
+  const [ isTranslating, setIsTranslating ] = useState(false)
   const [ user, setUser ] = useState<User>({
     id: 36547,
     email: 'real@test.mail',
     displayName: 'real',
     isAnonymous: false
   })
-  const [ authError, setAuthError ] = useState('')
-  const [ view, setView ] = useState('')
-  const [ showConfirmDeleteModal, setShowConfirmDeleteModal ] = useState(false)
   const [ myConlangs, setMyConlangs ] = useState<Conlang[]>([
     {
       id: 1,
@@ -49,14 +53,10 @@ export default function Home() {
       isPublic: true
     }
   ])
-  const [ searchTerm, setSearchTerm ] = useState('')
   const [ filteredDictionary, setFilteredDictionary ] = useState<Word[]>([
     { word: 'word2' },
     { word: 'word2' }
   ])
-  const [ editingConlang, setEditingConlang ] = useState(false)
-  const [ csvData, setCsvData ] = useState('')
-  const [ isTranslating, setIsTranslating ] = useState(false)
 
   function handleLogout() {
     // top 5 code moments of all time i think
@@ -93,12 +93,12 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-indigo-50 via-purple-50 to-pink-50">
+    <div className='min-h-screen bg-linear-to-br from-indigo-50 via-purple-50 to-pink-50'>
       <ConfirmDeleteModal showConfirmDeleteModal={showConfirmDeleteModal} setShowConfirmDeleteModal={setShowConfirmDeleteModal} deleteConlang={deleteConlang} />
       <Header user={user} authError={authError} view={view} setView={setView} handleLogout={handleLogout} />
 
-      <div className="max-w-7xl mx-auto p-6">
-        <div className="p-4 mb-4 bg-red-100 text-red-700 rounded-xl font-semibold border-l-4 border-red-500">
+      <div className='max-w-7xl mx-auto p-6'>
+        <div className='p-4 mb-4 bg-red-100 text-red-700 rounded-xl font-semibold border-l-4 border-red-500'>
           ⚠️ **Configuration Warning:** The application is using a placeholder configuration. Data persistence may not work correctly. ok
         </div>
 
